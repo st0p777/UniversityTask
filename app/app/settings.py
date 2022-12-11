@@ -53,13 +53,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -70,10 +63,6 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
-
-# engine_string = f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_HOST')}/{os.getenv('POSTGRES_NAME')}"
-# engine = create_engine(engine_string, echo=True, future=True)
-# session = sessionmaker(bind=engine)()
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,7 +90,6 @@ LOGIN_URL = '/users/login/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = [BASE_DIR / 'static']
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = [BASE_DIR / 'mediafiles']
