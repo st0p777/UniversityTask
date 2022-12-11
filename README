@@ -1,0 +1,8 @@
+docker-compose build
+docker-compose run app python manage.py migrate
+docker-compose up -d
+python manage.py collectstatic
+
+admin page: admin admin
+
+

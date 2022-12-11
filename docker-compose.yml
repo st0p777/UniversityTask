@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:13.8
+    restart: on-failure
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: "UniversityTask"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    command: sh runapp.sh
+    env_file:
+      - .env
+    volumes:
+      - "/media:/media"
+      - "./staticfiles:/staticfiles"
+    expose:
+      - 8000
+    depends_on:
+      - db
+  nginx:
+    build: ./nginx
+    volumes:
+      - "/media:/media"
+      - "./staticfiles:/staticfiles"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - app
